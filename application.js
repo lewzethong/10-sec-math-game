@@ -1,68 +1,59 @@
+var solution;
+
 $(document).ready(function () {
 
 newQuestion(10);
-console.log(mathOperation()[1])
 
-var selectedOperators = $('.operatorButtons input:checked').map(function() {
-  return $(this).id;
-}).toArray();
-$('.answer').on('click', newQuestion())
-console.log(selectedOperators)
+$('.answer').on('keyup', trial)
 })
+
+var trial = function () {
+  newQuestion();
+}
 
 var newQuestion = function (range = 10) {
   var selectedOperators = $('.operatorButtons input:checked').map(function() {
     return this.id;
   }).toArray();
 
-  console.log(selectedOperators, $('.operatorButtons input:checked'))
+  var randomOperator = selectedOperators[Math.floor(Math.random()*selectedOperators.length)]
+
+
+  console.log(selectedOperators, $('.operatorButtons input:checked'), randomOperator, solution)
 
   var num1 = Math.ceil(Math.random()*range)
   var num2 = Math.ceil(Math.random()*range)
-  console.log(num1, num2, range)
-  var msg = num1 + '+' + num2 
 
-  $('#question').html(msg)
-}
+  var maxNum = Math.max(num1, num2)
+  var minNum = Math.min(num1, num2)
+  var answer = 0;
+  switch (randomOperator) {
+    case 'add':
+      answer = num1 + num2;
+      console.log(answer)
+      $('#question').html(num1 + '+' + num2 );
+      break;    
+    case 'subtract':
+      answer = maxNum - minNum;
+      $('#question').html(maxNum + '-' + minNum );
+      break;
+    case 'multiply':
+      answer = num1 * num2;
+      $('#question').html(num1 + 'x' + num2 );
+      break;
+    case 'divide':
+      if (num1 % num2 == 0 || num2 % num1 == 0) {
+        answer = num1 / num2;
+      $('#question').html(num1 + '/' + num2 )
+      } else {
+        console.log('no answer')
+        newQuestion();
+      }
+      ;
+      break;
 
-var add = function (a, b) {
-  $('#question').html(a + ' + ' + b)
-  return a+b;
-}
-
-var subtract = function (a, b) {
-  if (a > b) {
-    $('#question').html(a + ' - ' + b);
-    return a-b;
-  } else {
-    $('#question').html(b + ' - ' + a);
-    return b-a;
+    default:
   }
-}
-
-var multiply = function (a, b) {
-  $('#question').html(a + ' x ' + b)
-  return a*b;
-}
-
-var divide = function (a, b) {
-  $('#question').html(a + ' / ' + b)
-  return a/b;
-}
-
-var mathOperation = function () {
-  var operationArr = []
-  if($('#plus').prop("checked")) {
-    operationArr.push(add);
-  }
-  if($('#minus').prop("checked")) {
-      operationArr.push(subtract);
-  }
-  if($('#multiply').prop("checked")) {
-      operationArr.push(multiply);
-  }
-  if($('#divide').prop("checked")) {
-      operationArr.push(divide);
-  }
-  return operationArr
+  console.log('answer' + answer)
+  return solution = answer
 }
