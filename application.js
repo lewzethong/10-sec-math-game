@@ -1,11 +1,8 @@
 var solution;
+var highScore;
+var score = 0;
 
-$(document).ready(function () {
 
-newQuestion(10);
-
-$('.answer').on('keyup', trial)
-})
 
 var trial = function () {
   newQuestion();
@@ -57,3 +54,66 @@ var newQuestion = function (range = 10) {
   console.log('answer' + answer)
   return solution = answer
 }
+
+var checkAnswer = function () {
+  if (solution == $('.answer').val()) {
+    $('.answer').val('');
+    score ++;
+    $('.score').html(score);
+    newQuestion();
+  }
+}
+
+function gameEnd () {
+	if (score > highScore) {
+		highScore = score;
+		score = 0;
+		updateHighScore();
+		$('.score').html('-');
+	} else {
+		score = 0;
+		$('.score').html('-');
+	}
+}
+
+var updateHighScore = function() {
+  $.ajax({
+      type: 'PUT',
+      url: 'https://altcademy-to-do-list-api.herokuapp.com/tasks/8706?api_key=521',
+      contentType: 'application/json',
+      dataType: 'json',
+      data: JSON.stringify({
+          task: {
+              content: parseInt($('.score').text())
+          }
+      }),
+      success: function(response, textStatus) {
+          loadHighScore();
+      },
+      error: function(request, textStatus, errorMessage) {
+          console.log(errorMessage);
+      }
+  }); 
+}
+
+var loadHighScore = function() {
+  $.ajax({
+      type: 'GET',
+      url: 'https://altcademy-to-do-list-api.herokuapp.com/tasks/8706?api_key=521',
+      dataType: 'json',
+      success: function(response, textStatus) {
+          $('.highScore').text(response.task.content)
+      },
+      error: function(request, textStatus, errorMessage) {
+          console.log(errorMessage);
+      }
+  });
+}
+
+$(document).ready(function () {
+
+newQuestion(10);
+$('.score').html(score)
+
+$('.answer').on('keyup', trial)
+})
