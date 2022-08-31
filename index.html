@@ -15,8 +15,12 @@
       <div class="row">
         <div class="col-xs-12">
           <h1>10 Sec Maths Game</h1>
+          <div class="timerContainer col-12">
+            <p class="mb-1 mt-3 timer">10</p>
+            <p>Seconds Remaining!</p>
+          </div>
           <div class="container">
-            <p id="question">testing</p>
+            <p id="question">Click here to start</p>
             <input type="number" class="answer">
             <div class="operatorButtons col-12">
               <input type="checkbox" id="add" checked>
@@ -27,6 +31,13 @@
               <label for="multiply" class="pr-2">x</label>
               <input type="checkbox" id="divide">
               <label for="divide" class="toggleFix">∕</label>
+            </div>
+            <div class="numberLimit col-12 mb-2">
+              <p>Number Limit</p>
+              <p id="numberLimit">10</p>
+              <div class="slidecontainer">
+                <input type="range" min="10" value="10" max="50" step="5" class="slider" id="range">
+              </div>
             </div>
             <div class="scoreboard">
               Score: <div class="score">-</div>
