@@ -4,24 +4,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>To Do List</title>
+    <title>10-sec Math Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="application.js"></script>
+    <style shopback-extension-v7-0-2="" data-styled-version="4.2.0"></style>
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
           <h1>10 Sec Maths Game</h1>
           <div class="timerContainer col-12">
-            <p class="mb-1 mt-3 timer">10</p>
-            <p>Seconds Remaining!</p>
+            <h2 class="mb-1 mt-3 timer">10</h2>
+            <h2>Seconds Remaining!</h2>
           </div>
           <div class="container">
             <p id="question">Click here to start</p>
-            <input type="number" class="answer">
+            <input type="number" class="answer" placeholder="answer here">
             <div class="operatorButtons col-12">
               <input type="checkbox" id="add" checked>
               <label for="add" class="pr-2">+</label>
@@ -40,8 +41,13 @@
               </div>
             </div>
             <div class="scoreboard">
-              Score: <div class="score">-</div>
-              High Score: <div class="highScore">-</div>
+              <div class="scoreContainer">
+                Score: <div class="score">-</div>
+              </div>
+              <div class="highScoreContainer">
+                High Score: 
+                <div class="highScore">-</div>
+              </div>
             </div>
           </div>
         </div>

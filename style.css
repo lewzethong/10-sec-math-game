@@ -1,5 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Walter+Turncoat);
+
 body {
   text-align: center;
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  background-image: url(/images/background.jpg);
+  background-position: center;
+  background-size: 100vh;
+  background-repeat: no-repeat;
+  font-family: "Walter Turncoat", cursive;
+  color: white;
+  font-size: 24px
 }
 
 .row{
@@ -23,4 +35,25 @@ input.answer {
   left: 1px;
   font-size: 1.5rem;
   text-align: left;
+}
+
+#question {
+  color: lightblue;
+  font-size: 40px;
+}
+
+.answer {
+  width: 250px;
+}
+
+.scoreContainer {
+  color: lightblue;
+}
+
+.highScoreContainer {
+  color: gold;
+}
+
+.numberLimit {
+  color: rgb(141, 236, 18);
 }
