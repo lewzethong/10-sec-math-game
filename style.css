@@ -6,6 +6,7 @@ body {
   align-items: center;
   display: flex;
   background-image: url(/images/background.jpg);
+  background-color: rgba(0, 0, 0, 0.811);
   background-position: center;
   background-size: 100vh;
   background-repeat: no-repeat;
